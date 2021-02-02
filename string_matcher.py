@@ -16,7 +16,10 @@ class StringMatcher:
             raise NotImplementedError
         self.method = method
 
-    def match(self, pattern, text):
+    def match(self, pattern, text, case_sensitive=True):
+        if case_sensitive is False:
+            pattern = pattern.lower()
+            text = text.lower()
         if self.method == 'naive':
             return self.__naive_matching(pattern, text)
         elif self.method == 'finite-state':

@@ -7,6 +7,11 @@ from string_matcher import StringMatcher
 
 
 @click.command()
+@click.option('-i',
+              '--case-insensitive',
+              is_flag=True,
+              help='Disables case sensitivity.'
+              )
 @click.option('-p',
               '--pattern',
               help='The pattern you want to match.',
@@ -26,13 +31,14 @@ from string_matcher import StringMatcher
                                 ),
               help="The matching method.",
               )
-def main(pattern, text, method=None):
+def main(case_insensitive, pattern, text, method=None):
     """Pattern matcher"""
     if method:
         SM = StringMatcher(method=method)
     else:
         SM = StringMatcher()
-    print(SM.match(pattern, text))
+    # If case_insensitivity is True: case_sensitive = False, else True
+    print(SM.match(pattern, text, case_sensitive=(not case_insensitive)))
 
 
 if __name__ == '__main__':
