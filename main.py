@@ -8,8 +8,8 @@ from string_matcher import StringMatcher
 
 def main(search_pattern, text):
     SM = StringMatcher()
-    return SM.match_string(search_pattern, text)
+    return SM.match(search_pattern, text)
 
 
 if __name__ == '__main__':
-    print(main('ab', 'ababc'))
+    print(main('', 'ababc'))
