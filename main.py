@@ -2,6 +2,7 @@
 # Programmierung 1: Projekt
 # Test: String-Matching-Tool
 
+import os
 import click
 from string_matcher import StringMatcher
 
@@ -18,8 +19,8 @@ from string_matcher import StringMatcher
               required=True
               )
 @click.option('-t',
-              '--text',
-              help='The text you want to search the pattern for.',
+              '--text-input',
+              help='The text input you want to search for the pattern.',
               required=True
               )
 @click.option('-m',
@@ -31,14 +32,38 @@ from string_matcher import StringMatcher
                                 ),
               help="The matching method.",
               )
-def main(case_insensitive, pattern, text, method=None):
+def main(case_insensitive, pattern, text_input, method=None):
     """Pattern matcher"""
     if method:
         SM = StringMatcher(method=method)
     else:
         SM = StringMatcher()
-    # If case_insensitivity is True: case_sensitive = False, else True
-    print(SM.match(pattern, text, case_sensitive=(not case_insensitive)))
+    if os.path.isdir(text_input):
+        for file in os.listdir(text_input):
+            if file.endswith(".txt"):
+                text_file = open(os.path.join(text_input, file), 'r')
+                # If case_insensitivity is True: case_sensitive = False, else True
+                print('{}: {}'.format(file,
+                                      SM.match(pattern,
+                                               text_file.read(),
+                                               case_sensitive=(not case_insensitive)
+                                               )
+                                      )
+                      )
+    elif os.path.isfile(text_input):
+        text_file = open(text_input, 'r')
+        print(SM.match(pattern,
+                       text_file.read(),
+                       case_sensitive=(not case_insensitive)
+                       )
+              )
+    else:
+        print(SM.match(pattern,
+                       text_input,
+                       case_sensitive=(not case_insensitive)
+                       )
+              )
+
 
 
 if __name__ == '__main__':
