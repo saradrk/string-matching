@@ -7,9 +7,9 @@ from string_matcher import StringMatcher
 
 
 def main(search_pattern, text):
-    SM = StringMatcher()
+    SM = StringMatcher(method='finite-state')
     return SM.match(search_pattern, text)
 
 
 if __name__ == '__main__':
-    print(main('', 'ababc'))
+    print(main('', 'ab'))
