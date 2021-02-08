@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # Sara Derakhshani, 01.02.21
 # Programmierung 1: Projekt
 # Test: String-Matching-Tool
@@ -42,11 +45,10 @@ def main(case_insensitive, pattern, text_input, method=None):
         for file in os.listdir(text_input):
             if file.endswith(".txt"):
                 text_file = open(os.path.join(text_input, file), 'r')
-                # If case_insensitivity is True: case_sensitive = False, else True
                 print('{}: {}'.format(file,
                                       SM.match(pattern,
                                                text_file.read(),
-                                               case_sensitive=(not case_insensitive)
+                                               case_insensitive=case_insensitive
                                                )
                                       )
                       )
@@ -54,13 +56,13 @@ def main(case_insensitive, pattern, text_input, method=None):
         text_file = open(text_input, 'r')
         print(SM.match(pattern,
                        text_file.read(),
-                       case_sensitive=(not case_insensitive)
+                       case_insensitive=case_insensitive
                        )
               )
     else:
         print(SM.match(pattern,
                        text_input,
-                       case_sensitive=(not case_insensitive)
+                       case_insensitive=case_insensitive
                        )
               )
 
