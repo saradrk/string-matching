@@ -23,7 +23,7 @@ class StringMatcher:
     # Algorithms that can be chosen for string matching
     methods = ['naive', 'finite-state']
 
-    def __init__(self, method='naive'):
+    def __init__(self, method='finite-state'):
         """Constructor for StringMatcher class.
 
         Initialize string matcher object if method is implemented.

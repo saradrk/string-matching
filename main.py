@@ -28,7 +28,7 @@ from string_matcher import StringMatcher
               )
 @click.option('-m',
               '--method',
-              default="naive",
+              default="finite-state",
               show_default=True,
               type=click.Choice(['naive', 'finite-state'],
                                 case_sensitive=False
