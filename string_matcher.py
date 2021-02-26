@@ -49,18 +49,23 @@ class StringMatcher:
         Return:
             Start positions of all pattern occurrences (list)
         """
-        if case_insensitive is True:
-            pattern = pattern.lower()
-            text = text.lower()
-        if self.method == 'naive':
-            return self.__naive_matching(pattern, text)
-        elif self.method == 'finite-state':
-            return self.__finite_state_matching(text,
-                                                self.__compute_transitions(pattern,
-                                                                           set(text)
-                                                                           ),
-                                                len(pattern)
-                                                )
+        # If pattern is empty string return every position in text
+        if len(pattern) > 0:
+            if case_insensitive is True:
+                pattern = pattern.lower()
+                text = text.lower()
+            if self.method == 'naive':
+                return self.__naive_matching(pattern, text)
+            elif self.method == 'finite-state':
+                return self.__finite_state_matching(text,
+                                                    self.__compute_transitions(
+                                                        pattern,
+                                                        set(text)
+                                                                              ),
+                                                    len(pattern)
+                                                    )
+        else:
+            return [i for i in range((len(text) + 1))]
 
     @staticmethod
     def __naive_matching(pattern, text):
