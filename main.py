@@ -36,35 +36,39 @@ from string_matcher import StringMatcher
               help="The matching method.",
               )
 def main(case_insensitive, pattern, text_input, method=None):
-    """Pattern matcher"""
-    if method:
-        SM = StringMatcher(method=method)
+    """Pattern matcher."""
+    if len(pattern) > 0:
+        if method:
+            SM = StringMatcher(method=method)
+        else:
+            SM = StringMatcher()
+        if os.path.isdir(text_input):
+            for file in os.listdir(text_input):
+                if file.endswith(".txt"):
+                    text_file = open(os.path.join(text_input, file), 'r')
+                    print('{}: {}'.format(file,
+                                          SM.match(
+                                              pattern,
+                                              text_file.read(),
+                                              case_insensitive=case_insensitive
+                                                  )
+                                          )
+                          )
+        elif os.path.isfile(text_input):
+            text_file = open(text_input, 'r')
+            print(SM.match(pattern,
+                           text_file.read(),
+                           case_insensitive=case_insensitive
+                           )
+                  )
+        else:
+            print(SM.match(pattern,
+                           text_input,
+                           case_insensitive=case_insensitive
+                           )
+                  )
     else:
-        SM = StringMatcher()
-    if os.path.isdir(text_input):
-        for file in os.listdir(text_input):
-            if file.endswith(".txt"):
-                text_file = open(os.path.join(text_input, file), 'r')
-                print('{}: {}'.format(file,
-                                      SM.match(pattern,
-                                               text_file.read(),
-                                               case_insensitive=case_insensitive
-                                               )
-                                      )
-                      )
-    elif os.path.isfile(text_input):
-        text_file = open(text_input, 'r')
-        print(SM.match(pattern,
-                       text_file.read(),
-                       case_insensitive=case_insensitive
-                       )
-              )
-    else:
-        print(SM.match(pattern,
-                       text_input,
-                       case_insensitive=case_insensitive
-                       )
-              )
+        print('\nThe pattern is empty. Please enter a pattern of length > 0.\n')
 
 
 
