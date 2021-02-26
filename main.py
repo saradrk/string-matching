@@ -54,8 +54,8 @@ def main(case_insensitive, pattern, text_input, method=None):
     method : string (default is None)
         One of the implemented matching methods 'naive' or 'finite-state'.
 
-    Returns
-    -------
+    Return
+    ------
     None
     """
     # Don't match if the pattern is empty
@@ -96,8 +96,8 @@ def main(case_insensitive, pattern, text_input, method=None):
                            )
                   )
     else:
-        print('\nThe pattern is empty. Please enter a pattern of length > 0.\n')
-
+        print('\nThe pattern is empty.'
+              'Please enter a pattern of length > 0.\n')
 
 
 if __name__ == '__main__':

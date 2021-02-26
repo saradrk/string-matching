@@ -13,24 +13,30 @@
 class StringMatcher:
     """Class for creating string matching objects.
 
-    Attributes:
-        method (str) -- the string matching method (default: 'naive')
+    Attributes
+    ----------
+        method : str
+            the string matching method (default: 'naive')
 
-    Methods:
-        match(pattern, text, case_sensitive=True) -- match pattern to text
+    Methods
+    -------
+        match(pattern, text, case_sensitive=True):
+            match pattern to text
     """
 
     # Algorithms that can be chosen for string matching
     methods = ['naive', 'finite-state']
 
     def __init__(self, method='finite-state'):
-        """Constructor for StringMatcher class.
+        """Initialize StringMatcher object.
 
         Initialize string matcher object if method is implemented.
         Otherwise don't.
 
-        Keyword args:
-            method (str) -- the string matching method (default: 'naive')
+        Keyword Args
+        ------------
+        method : str
+            The string matching method. (default: 'naive')
         """
         if method not in self.methods:
             raise NotImplementedError
@@ -41,13 +47,21 @@ class StringMatcher:
 
         Find all pattern occurrences in the text.
 
-        Args:
-            pattern (str) -- the matching pattern
-            text (str) -- the string to match the pattern to
-        Keyword args:
-            case_insensitive (bool) -- flag for case sensitivity mode (default: False)
-        Return:
-            Start positions of all pattern occurrences (list)
+        Args
+        ----
+        pattern : str
+            The matching pattern.
+        text : str
+            The string to match the pattern to.
+
+        Keyword Args
+        ------------
+        case_insensitive : bool
+            Flag for case sensitivity mode. (default: False)
+
+        Return
+        ------
+        Start positions of all pattern occurrences. (list)
         """
         # If pattern is empty string return every position in text
         if len(pattern) > 0:
@@ -57,13 +71,13 @@ class StringMatcher:
             if self.method == 'naive':
                 return self.__naive_matching(pattern, text)
             elif self.method == 'finite-state':
-                return self.__finite_state_matching(text,
-                                                    self.__compute_transitions(
-                                                        pattern,
-                                                        set(text)
-                                                                              ),
-                                                    len(pattern)
-                                                    )
+                return self.__finite_state_matching(
+                    text,
+                    self.__compute_transitions(pattern,
+                                               set(text)
+                                               ),
+                    len(pattern)
+                    )
         else:
             return [i for i in range((len(text) + 1))]
 
@@ -71,11 +85,16 @@ class StringMatcher:
     def __naive_matching(pattern, text):
         """Do string matching with naive string matching algorithm.
 
-        Args:
-            pattern (str) -- the matching pattern
-            text (str) -- the string to match the pattern to
-        Return:
-            Start positions of all pattern occurrences (list)
+        Args
+        ----
+        pattern : str
+            The matching pattern.
+        text : str
+            The string to match the pattern to.
+
+        Return
+        ------
+        Start positions of all pattern occurrences. (list)
         """
         matched_positions = []
         n = len(text)
@@ -91,12 +110,18 @@ class StringMatcher:
     def __finite_state_matching(text, transitions, pattern_length):
         """Do string matching with finite state string matching algorithm.
 
-        Args:
-            text (str) -- the string to match the pattern to
-            transitions (dict) -- the transition functions of the FSM
-            pattern_length (int) -- number of characters in pattern
-        Return:
-            Start positions of all pattern occurrences (list)
+        Args
+        ----
+            text : str
+                The matching text.
+            transitions : dict
+                The transition functions of the FSM.
+            pattern_length : int
+                Number of characters in pattern.
+
+        Return
+        ------
+        Start positions of all pattern occurrences. (list)
         """
         occurence_positions = []
         n = len(text)
@@ -111,11 +136,16 @@ class StringMatcher:
     def __compute_transitions(pattern, alphabet):
         """Compute transitions functions of finite state machine.
 
-        Args:
-            pattern (str) -- the pattern accepted by the FSM
-            alphabet (set) -- the alphabet of the FSM
-        Return:
-            Transition functions of the FSM (dict)
+        Args
+        ----
+            pattern : str
+                The pattern accepted by the FSM.
+            alphabet : set
+                The alphabet of the FSM.
+
+        Return
+        ------
+        Transition functions of the FSM. (dict)
         """
         transitions = {}
         m = len(pattern)
