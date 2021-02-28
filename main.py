@@ -44,15 +44,12 @@ def main(case_insensitive, pattern, text_input, method=None):
 
     Args
     ----
-    case_insensitive : bool
-        Flag that disables case sensitivity.
-    pattern : string
-        Pattern to match to the text input.
-    text_input : string
-        The text itself, a txt document containing the text or a directory
-        that should be scanned for txt documents.
-    method : string (default is None)
-        One of the implemented matching methods 'naive' or 'finite-state'.
+    case_insensitive (bool) -- Flag that disables case sensitivity.
+    pattern (str) -- Pattern to match to the text input.
+    text_input (str) -- The text itself, a txt document containing the text or
+    a directory that should be scanned for txt documents.
+    method (str) -- One of the implemented matching methods 'naive' or
+    'finite-state'. (default is None)
 
     Return
     ------
@@ -98,6 +95,20 @@ def main(case_insensitive, pattern, text_input, method=None):
               'Please enter a pattern of length > 0.\n')
 
 def pretty_print(start_pos_list, document=None):
+    """Pretty print the matched positions.
+
+    Print the list of matched positions as line of comma separated numbers.
+    If a document name is given print the document name before the positions.
+
+    Args
+    ----
+    start_pos_list (list) -- Contains the matched positions.
+    document (str) -- Name of the text input document. (default is None)
+
+    Return
+    ------
+    None
+    """
     if len(start_pos_list) > 0:
         out_str = str(start_pos_list[0])
         for pos in start_pos_list[1:]:

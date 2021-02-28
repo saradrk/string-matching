@@ -15,13 +15,12 @@ class StringMatcher:
 
     Attributes
     ----------
-        method : str
-            the string matching method (default: 'naive')
+        method (str) -- The string matching method. (default is 'naive')
 
     Methods
     -------
         match(pattern, text, case_sensitive=True):
-            match pattern to text
+            Match the pattern to the text input.
     """
 
     # Algorithms that can be chosen for string matching
@@ -35,8 +34,7 @@ class StringMatcher:
 
         Keyword Args
         ------------
-        method : str
-            The string matching method. (default: 'naive')
+        method (str) -- The string matching method. (default is 'naive')
         """
         if method not in self.methods:
             raise NotImplementedError
@@ -49,15 +47,13 @@ class StringMatcher:
 
         Args
         ----
-        pattern : str
-            The matching pattern.
-        text : str
-            The string to match the pattern to.
+        pattern (str) -- The matching pattern.
+        text (str) -- The string to match the pattern to.
 
         Keyword Args
         ------------
-        case_insensitive : bool
-            Flag for case sensitivity mode. (default: False)
+        case_insensitive (bool) -- Flag for case sensitivity mode. (default is
+        False)
 
         Return
         ------
@@ -87,10 +83,8 @@ class StringMatcher:
 
         Args
         ----
-        pattern : str
-            The matching pattern.
-        text : str
-            The string to match the pattern to.
+        pattern (str) -- The matching pattern.
+        text (str) -- The string to match the pattern to.
 
         Return
         ------
@@ -112,12 +106,9 @@ class StringMatcher:
 
         Args
         ----
-            text : str
-                The matching text.
-            transitions : dict
-                The transition functions of the FSM.
-            pattern_length : int
-                Number of characters in pattern.
+            text (str) -- The matching text.
+            transitions (dict) -- The transition functions of the FSM.
+            pattern_length (int) -- Number of characters in pattern.
 
         Return
         ------
@@ -138,10 +129,8 @@ class StringMatcher:
 
         Args
         ----
-            pattern : str
-                The pattern accepted by the FSM.
-            alphabet : set
-                The alphabet of the FSM.
+            pattern (str) -- The pattern accepted by the FSM.
+            alphabet (set) -- The alphabet of the FSM.
 
         Return
         ------
