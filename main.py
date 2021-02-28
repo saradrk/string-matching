@@ -74,30 +74,43 @@ def main(case_insensitive, pattern, text_input, method=None):
             for file in os.listdir(text_input):
                 if file.endswith(".txt"):
                     text_file = open(os.path.join(text_input, file), 'r')
-                    print('{}: {}'.format(file,
-                                          SM.match(
-                                              pattern,
-                                              text_file.read(),
-                                              case_insensitive=case_insensitive
-                                                  )
-                                          )
-                          )
+                    pretty_print(SM.match(pattern,
+                                          text_file.read(),
+                                          case_insensitive=case_insensitive
+                                          ),
+                                 document=file
+                                 )
         elif os.path.isfile(text_input):
-            text_file = open(text_input, 'r')
-            print(SM.match(pattern,
-                           text_file.read(),
-                           case_insensitive=case_insensitive
-                           )
-                  )
+            file = open(text_input, 'r')
+            pretty_print(SM.match(pattern,
+                                  file.read(),
+                                  case_insensitive=case_insensitive
+                                  )
+                         )
         else:
-            print(SM.match(pattern,
-                           text_input,
-                           case_insensitive=case_insensitive
-                           )
-                  )
+            pretty_print(SM.match(pattern,
+                                  text_input,
+                                  case_insensitive=case_insensitive
+                                  )
+                         )
     else:
-        print('\nThe pattern is empty.'
+        print('\nThe pattern is empty. '
               'Please enter a pattern of length > 0.\n')
+
+def pretty_print(start_pos_list, document=None):
+    if len(start_pos_list) > 0:
+        out_str = str(start_pos_list[0])
+        for pos in start_pos_list[1:]:
+            out_str += f', {pos}'
+        if document:
+            print(f'{document}: {out_str}')
+        else:
+            print(out_str)
+    else:
+        if document:
+            print(f'{document}: No matches found.')
+        else:
+            print('No matches found.')
 
 
 if __name__ == '__main__':
