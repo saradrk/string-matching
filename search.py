@@ -61,6 +61,9 @@ def search(case_insensitive, pattern, text_input, method=None):
         # If file match it to pattern
         # Otherwise handle text input as matching text
         if os.path.isdir(text_input):
+            check_txt_path = os.path.join(text_input, '*.txt')
+            if not os.path.exists(check_txt_path):
+                print(f'No .txt files found in {text_input} directory.')
             for file in os.listdir(text_input):
                 if file.endswith(".txt"):
                     text_file = open(os.path.join(text_input, file), 'r')
