@@ -74,13 +74,17 @@ def search(case_insensitive, pattern, text_input, method=None):
                                  document=file
                                  )
         elif os.path.isfile(text_input):
-            file = open(text_input, 'r')
-            pretty_print(SM.match(pattern,
-                                  file.read(),
-                                  case_insensitive=case_insensitive
-                                  ),
-                         document=text_input
-                         )
+            if text_input.endswith(".txt"):
+                file = open(text_input, 'r')
+                pretty_print(SM.match(pattern,
+                                      file.read(),
+                                      case_insensitive=case_insensitive
+                                      ),
+                             document=text_input
+                             )
+            else:
+                print(f'{text_input} has unpermitted file format. '
+                      'Only .txt files can be searched.')
         else:
             pretty_print(SM.match(pattern,
                                   text_input,
