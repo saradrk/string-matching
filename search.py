@@ -61,11 +61,10 @@ def search(case_insensitive, pattern, text_input, method=None):
         # If file match it to pattern
         # Otherwise handle text input as matching text
         if os.path.isdir(text_input):
-            check_txt_path = os.path.join(text_input, '*.txt')
-            if not os.path.exists(check_txt_path):
-                print(f'No .txt files found in {text_input} directory.')
+            txt_file_exists = False
             for file in os.listdir(text_input):
                 if file.endswith(".txt"):
+                    txt_file_exists = True
                     text_file = open(os.path.join(text_input, file), 'r')
                     pretty_print(SM.match(pattern,
                                           text_file.read(),
@@ -73,6 +72,8 @@ def search(case_insensitive, pattern, text_input, method=None):
                                           ),
                                  document=file
                                  )
+            if not txt_file_exists:
+                print(f'No .txt files found in {text_input} directory.')
         elif os.path.isfile(text_input):
             if text_input.endswith(".txt"):
                 file = open(text_input, 'r')
@@ -123,6 +124,8 @@ def pretty_print(start_pos_list, document=None):
                 print(f'{match_count} match found in {document}: {out_str}')
             else:
                 print(f'{match_count} matches found in {document}: {out_str}')
+        else:
+            print(f'{match_count} matches found: {out_str}')
     else:
         if document:
             print(f'No matches found in {document}')
