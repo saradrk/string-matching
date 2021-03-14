@@ -1,5 +1,5 @@
 # String Matching
-Modulprojekt PRO1 WiSe2020/21
+**Modulprojekt PRO1 WiSe2020/21**
 
 This is a command line string matching tool.  
 Users can search for a search term in direct input texts, single .txt files or directories with multiple .txt files.  
@@ -34,3 +34,32 @@ python3 search.py -i -p 'example' -t 'example text'
 python3 search.py -p 'example' -t 'example text' -m 'naive'
 ```
 ### Examples
+- Searching a text:
+```bash
+python3 search.py -p 'think' -t "Think left and think right and think low and think high."
+```
+- Searching a text with disabled case sensitivity:
+```bash
+python3 search.py -i -p 'think' -t "Think left and think right and think low and think high."
+```
+- Searching a text with disabled case sensitivity and naive string matching algorithm:
+```bash
+python3 search.py -i -p 'think' -t "Think left and think right and think low and think high." -m 'naive'
+```
+- Searching a .txt file:
+```bash
+python3 search.py -p 'ich' -t 'txt_examples/wiedersehen_5.txt'
+```
+- Searching a .txt file with disabled case sensitivity:
+```bash
+python3 search.py -i -p 'ich' -t 'txt_examples/wiedersehen_5.txt'
+```
+- Searching a .txt file case-sensitive with naive string matching algorithm:
+```bash
+python3 search.py -p 'Ich' -t 'txt_examples/wiedersehen_5.txt' -m 'naive'
+```
+- Searching a directory:
+```bash
+python3 search.py -p 'Berlin' -t 'txt_examples/'
+```
+(Optional parameters work equally for the directory search.)
