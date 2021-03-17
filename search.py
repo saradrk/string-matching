@@ -128,7 +128,7 @@ def pretty_print(start_pos_list, document=None):
                 print(f'{match_count} matches found in {document}: {out_str}')
         else:
             if match_count == 1:
-                print(f'{match_count} match found in {document}: {out_str}')
+                print(f'{match_count} match found: {out_str}')
             else:
                 print(f'{match_count} matches found: {out_str}')
     else:
