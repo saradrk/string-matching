@@ -1,5 +1,5 @@
 # String Matching
-**Modulprojekt PRO1 WiSe2020/21**
+**Modulprojekt PRO1 WiSe2020/21**: ```Doku/``` contains project report.  
 
 This is a command line string matching tool.  
 Users can search for a search term in direct input texts, single .txt files or directories with multiple .txt files.  
