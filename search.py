@@ -119,13 +119,18 @@ def pretty_print(start_pos_list, document=None):
         out_str = str(start_pos_list[0])
         for pos in start_pos_list[1:]:
             out_str += f', {pos}'
+        # Differentiate between singular and plural in print statement,
+        # depending on wether one match or multiple matches were found
         if document:
             if match_count == 1:
                 print(f'{match_count} match found in {document}: {out_str}')
             else:
                 print(f'{match_count} matches found in {document}: {out_str}')
         else:
-            print(f'{match_count} matches found: {out_str}')
+            if match_count == 1:
+                print(f'{match_count} match found in {document}: {out_str}')
+            else:
+                print(f'{match_count} matches found: {out_str}')
     else:
         if document:
             print(f'No matches found in {document}')
